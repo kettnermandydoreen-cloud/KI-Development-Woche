@@ -164,7 +164,7 @@ reduced.addEventListener('change',()=>{if(reduced.matches){hero.classList.remove
 
 (()=>{const root=document.getElementById('mk-portfolio');root.querySelectorAll('.value-flip').forEach(card=>{const front=card.querySelector('.value-front'),back=card.querySelector('.value-back'),close=card.querySelector('.value-close');function toggle(open){card.classList.toggle('is-open',open);front.setAttribute('aria-expanded',String(open));front.inert=open;back.inert=!open;back.setAttribute('aria-hidden',String(!open));(open?close:front).focus({preventScroll:true});}front.addEventListener('click',()=>toggle(true));close.addEventListener('click',()=>toggle(false));card.addEventListener('keydown',e=>{if(e.key==='Escape'&&card.classList.contains('is-open'))toggle(false);});});})();
 
-(()=>{const SUPABASE_URL='https://xnkasfvqxkzlnqqkwqwb.supabase.co',SUPABASE_ANON_KEY='HIER_ANON_KEY_EINTRAGEN';
+(()=>{const SUPABASE_URL='https://xnkasfvqxkzlnqqkwqwb.supabase.co',SUPABASE_ANON_KEY='sb_publishable_7_q-MM5qTInv8-WS8b3_JQ_v3m3nhvW';
 const f=document.getElementById('cform');if(!f)return;const st=f.querySelector('.status'),btn=f.querySelector('button');let last=0;
 const msg=(t,c)=>{st.textContent=t;st.className='status '+(c||'')};
 f.addEventListener('submit',async e=>{e.preventDefault();msg('');
@@ -173,9 +173,9 @@ let bad=null;f.querySelectorAll('input,textarea').forEach(el=>el.removeAttribute
 for(const el of f.querySelectorAll('[name=name],[name=email],[name=message],[name=consent]')){if(!el.checkValidity()||(el.name==='name'&&!el.value.trim())){el.setAttribute('aria-invalid','true');bad=bad||el}}
 if(bad){bad.focus();return msg('Bitte prüfe die markierten Felder und stimme der Datenschutzerklärung zu.','err')}
 if(Date.now()-last<15000)return msg('Bitte warte einen Moment, bevor du erneut sendest.','err');
-if(SUPABASE_ANON_KEY.startsWith('HIER'))return msg('Das Formular ist noch nicht konfiguriert.','err');
+if(false)return msg('Das Formular ist noch nicht konfiguriert.','err');
 btn.disabled=true;msg('Wird gesendet …');
-try{const r=await fetch(SUPABASE_URL+'/rest/v1/contact_messages',{method:'POST',headers:{'Content-Type':'application/json',apikey:SUPABASE_ANON_KEY,Authorization:'Bearer '+SUPABASE_ANON_KEY,Prefer:'return=minimal'},body:JSON.stringify({name:d.name.trim(),email:d.email.trim(),message:d.message.trim(),consent:true})});
+try{const r=await fetch(SUPABASE_URL+'/rest/v1/contact_messages',{method:'POST',headers:{'Content-Type':'application/json',apikey:SUPABASE_ANON_KEY,Prefer:'return=minimal'},body:JSON.stringify({name:d.name.trim(),email:d.email.trim(),message:d.message.trim(),consent:true})});
 if(!r.ok)throw new Error(r.status);last=Date.now();f.reset();msg('Danke, deine Nachricht ist angekommen. Ich melde mich bei dir.','ok')}
 catch(_){msg('Das Senden hat leider nicht geklappt. Bitte versuche es später erneut oder schreibe mir auf LinkedIn.','err')}
 finally{btn.disabled=false}});})();
