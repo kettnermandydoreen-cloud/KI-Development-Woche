@@ -1,0 +1,28 @@
+# Mandy Kettner
+
+> Persönliches Portfolio von Mandy Kettner, Associate Director Steering | Governance | Unit Compliance Officer bei Studio71 Germany in Berlin. Schwerpunkt: Governance, Risk & Compliance.
+
+Mandy Kettner ist Führungskraft im Bereich Governance, Risk & Compliance. Sie entwickelt wirksame Governance-Strukturen, steuert regulatorische und unternehmerische Risiken und sorgt für nachvollziehbare Compliance-Prozesse. Stärken: strukturierte Analyse komplexer Sachverhalte, risikoorientierte Bewertung, Auditfähigkeit und adressatengerechte Aufbereitung für Management und Fachbereiche.
+
+## Seiten
+
+- [Portfolio (Startseite)](https://kettnermandydoreen-cloud.github.io/KI-Development-Woche/): Profil, Werdegang, Haltung und Kontakt auf einer Seite
+- [Profil](https://kettnermandydoreen-cloud.github.io/KI-Development-Woche/#profil): Rolle, Arbeitsumfeld und Standort Berlin
+- [Werdegang](https://kettnermandydoreen-cloud.github.io/KI-Development-Woche/#weg): Stationen bei Studio71 Germany seit 2020
+- [Haltung](https://kettnermandydoreen-cloud.github.io/KI-Development-Woche/#haltung): Vielfalt & Respekt, Nachhaltigkeit, Female Empowerment, Working Moms
+- [Kontakt](https://kettnermandydoreen-cloud.github.io/KI-Development-Woche/#kontakt): Kontakt über LinkedIn
+
+## Werdegang (Studio71 Germany, Berlin)
+
+- Seit März 2023: Associate Director Steering | Governance | Unit Compliance Officer
+- Nov. 2021 – März 2023: Director Finance & Operations
+- Sept. 2020 – Nov. 2021: Head of Finance & Operations
+- März 2020 – Sept. 2020: Operation | Finance Managerin
+
+## Profile
+
+- [LinkedIn](https://www.linkedin.com/in/mandy-kettner-88a59b188/): bevorzugter Kontaktweg
+
+## Optional
+
+- [Designsystem](https://kettnermandydoreen-cloud.github.io/KI-Development-Woche/designsystem_Mandy_Kettner.html): Farben, Typografie, Komponenten und Design Tokens der Website
