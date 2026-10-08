@@ -76,6 +76,10 @@
   --mk-rule-strong:4px;
   --mk-rule-accent:3px;
   --mk-radius:0;
+  --mk-radius-sm:6px;   /* optional: Tags, Eingabefelder */
+  --mk-radius-md:12px;  /* optional: Buttons, Karten */
+  --mk-radius-lg:24px;  /* optional: Bildkarten, Dialoge */
+  --mk-radius-pill:999px; /* optional: Badges, Schalter */
 
   /* Bewegung */
   --mk-dur-quick:200ms;
@@ -315,6 +319,21 @@ code{font:13px/1.5 var(--ds-mono)}
 
 /* Kapitel */
 .ds-section{padding:96px 0;border-top:1px solid var(--mk-line)}
+.ds-radii{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:24px}
+.ds-radii figure{margin:0}
+.ds-radii .box{height:110px;border:1px solid #000;background:var(--mk-lime)}
+.ds-radii figcaption{margin-top:10px;font-size:14px}
+.ds-radii code{font:13px ui-monospace,Menlo,monospace}
+.ds-radius-demo{margin-top:32px;padding:24px;border:1px solid #000;background:var(--mk-paper)}
+.ds-radius-demo__row{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-top:20px}
+.ds-radius-demo .card{width:220px;padding:20px;border:1px solid #000;border-radius:var(--mk-radius);background:var(--mk-soft)}
+.ds-radius-demo .input{min-height:48px;padding:10px 14px;border:1px solid #000;border-radius:var(--mk-radius);background:var(--mk-paper);font:16px var(--mk-sans)}
+.ds-radius-demo .tag{display:inline-block;padding:4px 14px;border:1px solid #000;border-radius:var(--mk-radius);font-size:13px}
+.ds-radius-switch{display:flex;flex-wrap:wrap;gap:8px}
+.ds-radius-switch button{min-height:44px;padding:0 18px;border:1px solid #000;background:transparent;font:14px var(--mk-sans);cursor:pointer;color:inherit}
+.ds-radius-switch button[aria-pressed=true]{background:var(--mk-ink);color:var(--mk-paper)}
+@media(max-width:900px){.ds-radii{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
 .ds-head{max-width:780px;margin-bottom:56px}
 .ds-head .mk-eyebrow{margin-bottom:24px}
 .ds-head .mk-h2{margin-bottom:24px}
@@ -956,7 +975,7 @@ code{font:13px/1.5 var(--ds-mono)}
       <header class="ds-head">
         <p class="mk-eyebrow">04 / Flächen &amp; Linien</p>
         <h2 class="mk-h2" id="t-flaechen">Helle Flächen.<br><span class="mk-accent">Feine Linien.</span></h2>
-        <p class="mk-lead">Tiefe entsteht durch den Wechsel von Flächen und durch feine Linien – nicht durch Schatten, Verläufe oder runde Ecken.</p>
+        <p class="mk-lead">Tiefe entsteht durch den Wechsel von Flächen und durch feine Linien – nicht durch Schatten oder Verläufe. Ecken sind standardmäßig eckig, optionale Rundungen stehen weiter unten.</p>
       </header>
 
       <div class="ds-sub">
@@ -970,6 +989,35 @@ code{font:13px/1.5 var(--ds-mono)}
           <div class="mk-surface-paper"><span class="mk-eyebrow">Papierweiß</span><strong>Kontakt</strong><span>Abschluss mit Aktion und Foto</span></div>
           <div class="mk-surface-ink"><span class="mk-eyebrow">Anthrazit</span><strong>Gezielter Kontrast.</strong><span>Akzentfläche – z. B. Zitat oder Kennzahl, Leuchtgrün für wichtige Aktionen</span></div>
         </div>
+      </div>
+
+      <div class="ds-sub" id="rundungen">
+        <h3 class="ds-h3">Rundungen</h3>
+        <p class="ds-intro">Standard der Marke ist eckig (<code>--mk-radius: 0</code>). Für Varianten und neue Projekte gibt es eine feste Skala. Wähle unten eine Stufe und sieh, wie Button, Karte, Eingabefeld und Tag reagieren.</p>
+        <div class="ds-radii">
+          <figure><div class="box" style="border-radius:0"></div><figcaption><strong>Standard</strong><br><code>--mk-radius</code> · 0</figcaption></figure>
+          <figure><div class="box" style="border-radius:var(--mk-radius-sm)"></div><figcaption><strong>Klein</strong><br><code>--mk-radius-sm</code> · 6px</figcaption></figure>
+          <figure><div class="box" style="border-radius:var(--mk-radius-md)"></div><figcaption><strong>Mittel</strong><br><code>--mk-radius-md</code> · 12px</figcaption></figure>
+          <figure><div class="box" style="border-radius:var(--mk-radius-lg)"></div><figcaption><strong>Groß</strong><br><code>--mk-radius-lg</code> · 24px</figcaption></figure>
+          <figure><div class="box" style="border-radius:var(--mk-radius-pill)"></div><figcaption><strong>Pille</strong><br><code>--mk-radius-pill</code> · 999px</figcaption></figure>
+        </div>
+        <div class="ds-radius-demo" id="radiusDemo">
+          <div class="ds-radius-switch" role="group" aria-label="Rundung wählen">
+            <button type="button" data-r="0" aria-pressed="true">Eckig (Standard)</button>
+            <button type="button" data-r="6px" aria-pressed="false">Klein</button>
+            <button type="button" data-r="12px" aria-pressed="false">Mittel</button>
+            <button type="button" data-r="24px" aria-pressed="false">Groß</button>
+            <button type="button" data-r="999px" aria-pressed="false">Pille</button>
+          </div>
+          <div class="ds-radius-demo__row">
+            <a class="mk-button" href="#rundungen">Primärer Button</a>
+            <div class="card"><strong>Karte</strong><br><span style="font-size:14px">Folgt dem gewählten Radius.</span></div>
+            <input class="input" aria-label="Beispiel-Eingabefeld" placeholder="Eingabefeld">
+            <span class="tag">Tag</span>
+          </div>
+          <p style="font-size:14px;margin-top:20px">Aktuell: <code id="radiusVal">--mk-radius: 0</code></p>
+        </div>
+        <p class="ds-intro" style="margin-top:24px">Regel: Pro Seite nur eine Stufe verwenden. Bilder, Linien und Trenner bleiben eckig.</p>
       </div>
 
       <div class="ds-sub">
@@ -1673,7 +1721,7 @@ const TOKENS={
   space:{1:'8px',2:'16px',3:'24px',4:'32px',5:'48px',6:'64px',7:'96px'},
   layout:{maxWidth:'1200px',margin:{desktop:'64px',tablet:'40px',mobile:'24px'},sectionY:{desktop:'88px',mobile:'56px'},titleGap:'24px',contentGap:{desktop:'48px',mobile:'32px'},measure:'65ch',touchTarget:'44px',buttonHeight:'48px'},
   breakpoint:{tablet:'max-width: 900px',mobile:'max-width: 650px'},
-  border:{rule:'1px',strong:'4px',accent:'3px',radius:'0'},
+  border:{rule:'1px',strong:'4px',accent:'3px',radius:'0',radiusScale:{sm:'6px',md:'12px',lg:'24px',pill:'999px'}},
   motion:{duration:{quick:'200ms',image:'400ms',reveal:'550ms',intro:'650ms',letter:'1050ms',stagger:'100ms'},easing:{standard:'cubic-bezier(.2,.7,.2,1)',letter:'cubic-bezier(.17,.8,.25,1)'},tiltMax:'2deg',revealOffset:'12px'}
 };
 
@@ -1907,6 +1955,10 @@ function setActive(id){sideLinks.forEach(a=>{const on=a.hash==='#'+id;a.classLis
 function spy(){ticking=false;const y=innerHeight*.3;let cur=null;for(const s of chapters){if(s.getBoundingClientRect().top<=y)cur=s;}const id=cur?cur.id:null;if(id!==current){current=id;setActive(id);}}
 addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(spy);}},{passive:true});spy();
 })();
+
+(()=>{const box=document.getElementById('radiusDemo');if(!box)return;const val=document.getElementById('radiusVal');
+box.querySelectorAll('[data-r]').forEach(b=>b.addEventListener('click',()=>{box.style.setProperty('--mk-radius',b.dataset.r);
+box.querySelectorAll('[data-r]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));val.textContent='--mk-radius: '+b.dataset.r}))})();
 </script>
 </body>
 </html>
