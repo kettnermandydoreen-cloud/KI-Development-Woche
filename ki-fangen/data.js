@@ -1,0 +1,101 @@
+// Fragen und Tools. Antwort an Index 0 ist richtig, die Reihenfolge wird im Spiel gemischt.
+const TOOLS=[
+{n:"ChatGPT",k:"Chatbot",f:"OpenAI",d:"Dialogfähiger Textassistent von OpenAI.",q:[
+ ["Welche Firma hat ChatGPT entwickelt?",["OpenAI","Google","Meta","Apple"],0],
+ ["Wofür steht das „GPT“ in ChatGPT?",["Generative Pre-trained Transformer","General Purpose Tool","Global Prompt Text","Guided Python Tutor"],0]]},
+{n:"Claude",k:"Chatbot",f:"Anthropic",d:"KI-Assistent von Anthropic, bekannt für lange Kontexte.",q:[
+ ["Welches Unternehmen entwickelt Claude?",["Anthropic","Mistral","Microsoft","Amazon"],0],
+ ["Wie nennt Anthropic die Claude-Variante für eigene Mini-Assistenten mit Anweisungen?",["Project","Gem","CustomGPT","Copilot"],0]]},
+{n:"Gemini",k:"Chatbot",f:"Google",d:"Multimodale Modellfamilie von Google.",q:[
+ ["Von welcher Firma stammt Gemini?",["Google","Nvidia","IBM","Adobe"],0],
+ ["Welche Eingaben kann ein multimodales Modell wie Gemini verarbeiten?",["Text, Bild, Audio und Video","Nur Text","Nur Zahlen","Nur Code"],0]]},
+{n:"Midjourney",k:"Bildgenerator",f:"Midjourney",d:"Erzeugt Bilder aus Textbeschreibungen.",q:[
+ ["Was macht Midjourney?",["Bilder aus Text erzeugen","Musik komponieren","Code prüfen","Sprache übersetzen"],0],
+ ["Wie nennt man die Texteingabe an eine KI?",["Prompt","Patch","Token-Key","Pixel"],0]]},
+{n:"Copilot",k:"Coding-Hilfe",f:"GitHub / Microsoft",d:"Schlägt Code direkt im Editor vor.",q:[
+ ["Wobei hilft GitHub Copilot vor allem?",["Beim Programmieren","Beim Videoschnitt","Bei der Buchhaltung","Beim Übersetzen von Audio"],0],
+ ["Was ist ein „Token“ bei Sprachmodellen?",["Ein Textbaustein, den das Modell verarbeitet","Ein Passwort","Eine Grafikkarte","Ein Dateiformat"],0]]},
+{n:"Perplexity",k:"KI-Suche",f:"Perplexity AI",d:"Antwortmaschine mit Quellenangaben.",q:[
+ ["Was zeichnet Perplexity aus?",["Antworten mit Quellenangaben","Nur Bildbearbeitung","Offline-Spiele","Sprachsynthese"],0],
+ ["Wie hilft eine KI-Suche mit Quellenangaben gegen erfundene Antworten?",["Man kann Aussagen gegenprüfen","Sie macht Antworten länger","Sie ersetzt das Training","Sie verschlüsselt Fragen"],0]]},
+{n:"Whisper",k:"Spracherkennung",f:"OpenAI",d:"Wandelt gesprochene Sprache in Text um.",q:[
+ ["Was kann Whisper?",["Sprache in Text umwandeln","Bilder malen","Videos schneiden","Tabellen berechnen"],0],
+ ["Wie heißt Sprache-zu-Text auf Englisch?",["Speech-to-Text","Text-to-Image","Image-to-Video","Code-to-Speech"],0]]},
+{n:"Stable Diffusion",k:"Bildgenerator",f:"Stability AI",d:"Offenes Bildmodell, lokal nutzbar.",q:[
+ ["Was ist besonders an Stable Diffusion?",["Die Modellgewichte sind offen verfügbar","Es läuft nur im Rechenzentrum","Es erzeugt nur Text","Es ist ein Browser"],0],
+ ["Was ist „Open Source“?",["Quellcode ist öffentlich einsehbar","Software ist immer gratis und sicher","Code ist verschlüsselt","Nur für Firmen"],0]]},
+{n:"Hugging Face",k:"Plattform",f:"Hugging Face",d:"Hub für Modelle, Datensätze und Demos.",q:[
+ ["Was ist Hugging Face?",["Plattform zum Teilen von KI-Modellen","Ein Chip-Hersteller","Ein Social Network für Fotos","Ein Betriebssystem"],0],
+ ["Was bedeutet „Training“ bei einer KI?",["Das Modell lernt Muster aus Daten","Ein Nutzer übt Prompts","Das Gerät wird gekühlt","Die Software wird installiert"],0]]},
+{n:"Suno",k:"Musikgenerator",f:"Suno",d:"Erzeugt Songs inklusive Gesang aus Text.",q:[
+ ["Was erzeugt Suno?",["Songs aus Textbeschreibungen","Fotos","Präsentationen","3D-Modelle"],0],
+ ["Was bedeutet „generative KI“?",["KI, die neue Inhalte erzeugt","KI, die nur sortiert","KI ohne Daten","KI nur für Roboter"],0]]},
+{n:"ElevenLabs",k:"Stimmgenerator",f:"ElevenLabs",d:"Realistische Sprachausgabe und Stimmklone.",q:[
+ ["Wofür ist ElevenLabs bekannt?",["Realistische KI-Stimmen","Bildretusche","Suchmaschine","Codegenerierung"],0],
+ ["Was ist ein Deepfake?",["Täuschend echte KI-Fälschung von Bild, Ton oder Video","Ein tiefer Datenspeicher","Eine Verschlüsselung","Ein Chatverlauf"],0]]},
+{n:"DALL·E",k:"Bildgenerator",f:"OpenAI",d:"Bildmodell von OpenAI.",q:[
+ ["Von wem stammt DALL·E?",["OpenAI","Adobe","Canva","Samsung"],0],
+ ["Was regelt der EU AI Act?",["Den Einsatz von KI in der EU","Die Internetgeschwindigkeit","Steuern auf Software","Handyverträge"],0]]}
+];
+const GLOSS=[
+["Was ist die 3-C-Methode beim Prompting?",["Context, Command, Constraints","Chat, Code, Cloud","Create, Copy, Check","Context, Cache, Compile"],0],
+["Welches Modell brachte 2012 den Durchbruch des Deep Learning in der Bilderkennung?",["AlexNet","ELIZA","DeepSeek","BERT"],0],
+["Was ist ein Algorithmus?",["Eine eindeutige, schrittweise Handlungsvorschrift zur Lösung einer Aufgabe","Ein neuronales Netz","Ein Trainingsdatensatz","Eine Programmiersprache"],0],
+["Wozu dient ein Benchmark?",["Zum objektiven Vergleich von KI-Modellen unter gleichen Bedingungen","Zum Verschlüsseln von Daten","Zum Speichern von Prompts","Zum Hosten von Webseiten"],0],
+["Was beschreibt Bias in der KI?",["Systematische Verzerrung, oft durch unausgewogene Trainingsdaten","Die Rechengeschwindigkeit","Die Größe des Kontextfensters","Ein Urheberrechtsproblem"],0],
+["Was macht der Attention-Mechanismus im Transformer?",["Er gewichtet, wie stark Token einander im Kontext beeinflussen","Er speichert Bilder","Er verschlüsselt Prompts","Er kühlt die Hardware"],0],
+["Wofür steht Chain-of-Thought?",["Das Modell legt seinen Lösungsweg Schritt für Schritt offen","Eine Blockchain für KI","Mehrere Modelle in Reihe","Ein Chat-Verlauf"],0],
+["Welches Ereignis machte generative KI 2022 massentauglich?",["Veröffentlichung von ChatGPT","Der Turing-Test","Die Dartmouth-Konferenz","Der DeepSeek-Schock"],0],
+["Was bedeutet Chunking im RAG-Kontext?",["Dokumente in kleine, sinnvolle Abschnitte zerlegen","Daten komprimieren","Modelle löschen","Prompts übersetzen"],0],
+["Welcher Ansatz stellt Claude eine „Konstitution“ aus Prinzipien zur Seite?",["Constitutional AI","Red-Teaming","Few-Shot Prompting","Backpropagation"],0],
+["Welche Begriffe bezeichnen dasselbe Konzept: ein konfigurierter Mini-Assistent?",["CustomGPT, Project, Gem","Token, Chunk, Prompt","API, SDK, MCP","Bias, Fallback, Grounding"],0],
+["Wo wurde 1956 der Begriff „Artificial Intelligence“ geprägt?",["Dartmouth-Konferenz","Turing-Test","MIT-Gipfel","ImageNet-Wettbewerb"],0],
+["Was ist Deep Learning?",["ML mit mehrschichtigen neuronalen Netzen","Ein Suchalgorithmus","Eine Datenbank","Ein Prompt-Framework"],0],
+["Was löste der DeepSeek-Schock 2025 aus?",["Zweifel an den Kosten-Annahmen der Branche","Das Ende von Transformern","Ein KI-Verbot","Einen neuen KI-Winter"],0],
+["Was ist ein Embedding?",["Numerische Vektordarstellung von Bedeutung","Ein Bildformat","Ein Sicherheitsverfahren","Eine Programmiersprache"],0],
+["Was beschreiben Expertensysteme der 1980er?",["Regelbasierte Wenn-Dann-Systeme mit Fachwissen","Selbstlernende Chatbots","Bildgeneratoren","Sprachmodelle"],0],
+["Wie viele Beispiele gibt Few-Shot Prompting typischerweise mit?",["Mehrere (etwa 2–5)","Keins","Genau eins","Mehrere Tausend"],0],
+["Was ist Fine-Tuning?",["Gezieltes Weitertrainieren eines vortrainierten Modells","Das Formatieren von Prompts","Das Löschen von Parametern","Ein Hostingdienst"],0],
+["Was bedeutet Grounding?",["Das Modell an verifizierbare Faktenquellen anbinden","Die Hardware erden","Ein Modell abschalten","Prompts verkürzen"],0],
+["Was ist eine Halluzination?",["Plausibel klingende, aber falsche oder erfundene Ausgabe","Ein Bildfehler","Ein Serverausfall","Ein Lizenzverstoß"],0],
+["Was versteht man unter Jailbreaking?",["Sicherheitsregeln eines Modells per Prompt umgehen","Ein Modell trainieren","Ein Handy entsperren","Daten löschen"],0],
+["Was besagt das Jevons-Paradoxon?",["Effizienz führt oft zu insgesamt mehr Verbrauch","Rechenleistung verdoppelt sich alle zwei Jahre","Mehr Daten senken Kosten","KI spart immer Energie"],0],
+["Was war ein KI-Winter?",["Phase reduzierter Förderung nach enttäuschten Erwartungen","Ein Stromausfall im Rechenzentrum","Ein Trainingsverfahren","Ein Benchmark"],0],
+["Was bedeutet Schwache KI (Narrow AI)?",["KI für eine spezifische Aufgabe – heutiger Stand","Menschenähnliche KI für alles","Eine Superintelligenz","Eine fehlerhafte KI"],0],
+["Was ist Starke KI (AGI)?",["Hypothetische KI mit menschenähnlicher, allgemeiner Intelligenz","Ein sehr großes LLM","Ein schneller Chip","Ein Chatbot mit Plug-ins"],0],
+["Wofür steht MCP?",["Model Context Protocol – Standard zur Anbindung externer Tools","Machine Code Processor","Multi Channel Prompt","Model Copy Protection"],0],
+["Welcher Prompt steht über dem nutzerdefinierten System Prompt?",["Der Model System Prompt des Anbieters","Der Chatverlauf","Der Few-Shot-Prompt","Keiner"],0],
+["Was besagt Moore’s Law?",["Rechenleistung verdoppelt sich etwa alle zwei Jahre","KI wird jedes Jahr doppelt so teuer","Modelle verdoppeln ihre Parameter monatlich","Daten verdoppeln sich täglich"],0],
+["Was bedeutet Multimodalität?",["Verarbeitung mehrerer Datentypen wie Text, Bild, Audio","Nutzung mehrerer Sprachen","Betrieb auf mehreren Servern","Mehrere Nutzer gleichzeitig"],0],
+["Was ist Prompt Injection?",["Einschleusen versteckter Anweisungen in Eingabedaten","Das Optimieren eines Prompts","Ein Trainingsverfahren","Eine Datenbankabfrage"],0],
+["Was ist Prompt Leaking?",["Den verborgenen System Prompt offenlegen","Daten verlieren","Prompts verkürzen","Modelle klonen"],0],
+["Was ist Red-Teaming?",["Systematisches Testen auf Schwachstellen durch simulierte Angriffe","Ein Trainingsverfahren","Ein Bildfilter","Eine Hostingplattform"],0],
+["Wofür steht RAG?",["Retrieval-Augmented Generation","Rapid AI Growth","Random Access Generator","Rule-based Agent Graph"],0],
+["Wie lernt Reinforcement Learning?",["Durch Belohnung und Bestrafung in einer Umgebung","Aus beschrifteten Daten","Ohne jede Rückmeldung","Durch Auswendiglernen"],0],
+["Was ist Supervised Learning?",["Lernen mit Daten, deren Lösung (Label) bekannt ist","Lernen ohne Daten","Lernen durch Belohnung","Lernen ohne Menschen"],0],
+["Was ist Unsupervised Learning?",["Muster in Daten ohne Labels finden","Lernen mit Lösungen","Prompts ohne Beispiele","Ein Sicherheitstest"],0],
+["Was ist Zero-Shot Prompting?",["Aufgabe ohne jedes Beispiel nur per Instruktion","Aufgabe mit genau einem Beispiel","Prompt ohne Text","Ein leerer Chat"],0],
+["Was ist One-Shot Prompting?",["Genau ein Beispiel wird mitgegeben","Kein Beispiel","Fünf Beispiele","Ein Versuch ohne Kontrolle"],0],
+["Was misst der Turing-Test?",["Ob ein Mensch Maschine und Mensch nicht unterscheiden kann","Die Rechenleistung","Die Datenmenge","Die Energieeffizienz"],0],
+["Was ist die Transformer-Architektur von 2017?",["Grundlage moderner LLMs, verarbeitet Token parallel","Ein Bildformat","Ein regelbasiertes System","Ein Hosting-Dienst"],0],
+["Wofür ist Row Level Security bei Supabase wichtig?",["Sie legt zeilenweise fest, wer Daten lesen oder ändern darf","Sie beschleunigt Bilder","Sie übersetzt Texte","Sie komprimiert Code"],0],
+["Wo darf ein Secret Key (Service-Role-Key) niemals stehen?",["Im Frontend oder im Repository","In einer Environment Variable auf dem Server","In einer .env-Datei in der .gitignore","Im Hosting-Dashboard"],0],
+["Wofür ist die .gitignore da?",["Sie nimmt Dateien wie geheime Schlüssel aus dem Repository heraus","Sie beschleunigt Git","Sie löscht Commits","Sie erstellt Branches"],0],
+["Was ist ein Fallback?",["Ausweichlösung, wenn das System nicht weiterkommt","Ein Absturz","Ein Trainingsschritt","Eine Lizenz"],0],
+["Was ist Meta-Prompting?",["Das Modell entwirft oder optimiert Prompts selbst","Ein Prompt mit Metadaten","Ein Hosting-Verfahren","Ein Bildfilter"],0],
+["Was ist Prompt Chaining?",["Komplexe Aufgabe in aufeinander aufbauende Prompts zerlegen","Mehrere Modelle trainieren","Prompts verschlüsseln","Chats löschen"],0],
+["Was gilt für die Attention-Berechnung im Transformer vs. die Textgenerierung?",["Attention läuft parallel, Generierung Token für Token","Beides parallel","Beides nacheinander","Attention nacheinander, Generierung parallel"],0],
+["Was unterscheidet eine Bibliothek von einem Framework?",["Bibliothek = Werkzeugkasten, Framework gibt den Rahmen vor","Beides ist dasselbe","Framework ist nur für KI","Bibliothek ist immer kostenpflichtig"],0],
+["Was ist GitHub Pages?",["Kostenloses Hosting für statische Seiten","Ein KI-Chatbot","Eine Datenbank","Ein Code-Editor"],0],
+["Was ist ein Commit?",["Ein gespeicherter Zwischenstand im Repository","Das Hochladen auf GitHub","Ein neuer Branch","Ein Passwort"],0],
+["Was bewirkt ein Push?",["Lokale Commits werden ins Online-Repository hochgeladen","Dateien werden gelöscht","Ein Branch wird gelöscht","Der Code wird ausgeführt"],0],
+["Was ist Agentic Coding?",["Ein KI-Agent arbeitet ein Ziel in mehreren Schritten selbstständig ab","Ein Mensch tippt jede Zeile","Code ohne Tests","Ein Programmierwettbewerb"],0],
+["Was ist Vibe Coding?",["Software per Beschreibung in natürlicher Sprache von der KI schreiben lassen","Programmieren mit Musik","Ein Verschlüsselungsverfahren","Ein Hosting-Plan"],0],
+["Was ist der Zweck einer Vektordatenbank?",["Schnelle Ähnlichkeitssuche über Embeddings","Speichern von Bildern","Verwalten von Passwörtern","Hosting von Webseiten"],0],
+["Was ist ein Kontextfenster?",["Maximale Tokenmenge, die ein Modell gleichzeitig berücksichtigt","Ein Browserfenster","Die Trainingsdauer","Ein Dateiformat"],0],
+["Was ist Inpainting?",["Gezieltes Füllen oder Ersetzen von Bildbereichen","Bild über den Rand erweitern","Bild in Video wandeln","Text in Sprache wandeln"],0],
+["Was ist Image-to-Video?",["Ein Standbild wird zu einem kurzen Video animiert","Ein Video wird zu Text","Ein Bild wird verkleinert","Ein Foto wird gedruckt"],0],
+["Was ist Voice Cloning?",["Eine Stimme anhand weniger Audio-Beispiele nachbilden","Eine Sprache übersetzen","Audio komprimieren","Musik sortieren"],0],
+["Was ist ein Static Site?",["Webseite aus fertigen Dateien ohne serverseitige Verarbeitung","Eine Seite mit Datenbank","Eine Seite mit Login","Eine App mit KI"],0],
+["Wofür steht API?",["Application Programming Interface","Automated Prompt Input","Advanced Python Integration","Applied AI Protocol"],0]
+];

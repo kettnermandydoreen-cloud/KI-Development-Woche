@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KI-Fänger – Fange alle KI-Tools</title>
+<meta name="description" content="Browser-Spiel: Streife durch die Welt, beantworte Fragen zu KI-Wissen und fange alle 12 KI-Tools.">
+<meta name="theme-color" content="#292A2C">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23292A2C'/%3E%3Crect x='4' y='4' width='8' height='8' fill='%23C3F36B'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main id="app">
+  <header class="top">
+    <div>
+      <p class="meta">Quizspiel · KI-Wissen</p>
+      <h1>KI-Fänger</h1>
+    </div>
+    <nav class="tools" aria-label="Menü">
+      <button id="btnDex">KI-Dex <span id="dexCount"></span></button>
+      <button id="btnSfx" aria-pressed="true">Effekte: an</button>
+      <button id="btnMusic" aria-pressed="false">Musik: aus</button>
+      <button id="btnReset">Neu starten</button>
+    </nav>
+  </header>
+
+  <section id="hud" class="hud" aria-label="Status">
+    <div><span class="meta">Energie</span><div class="pips hp" id="hHp"></div></div>
+    <div><span class="meta">Level <b id="hLv"></b></span><div class="bar"><i id="hXp"></i></div></div>
+    <div><span class="meta">Tokens</span><b id="hTok"></b></div>
+    <div><span class="meta">Prompt-Bälle</span><b id="hBall"></b></div>
+    <div><span class="meta">Riegel</span><b id="hBar"></b></div>
+    <div><span class="meta">Ort</span><b id="hMap"></b></div>
+  </section>
+
+  <section id="world">
+    <div id="stage">
+      <canvas id="cv" aria-label="Spielwelt"></canvas>
+      <div id="dialog" hidden><p class="meta" id="dName"></p><p id="dText"></p><span class="dhint">weiter ▼</span></div>
+      <div id="fade"></div>
+    </div>
+    <div id="controls">
+      <div id="pad">
+        <button class="u" data-d="u" aria-label="Hoch">▲</button>
+        <button class="l" data-d="l" aria-label="Links">◀</button>
+        <button class="d" data-d="d" aria-label="Runter">▼</button>
+        <button class="r" data-d="r" aria-label="Rechts">▶</button>
+      </div>
+      <div class="side">
+        <button id="btnA" class="primary">A · Sprechen</button>
+        <p class="meta">Pfeiltasten / WASD · E oder Enter = Sprechen · I = Dex · M = Musik</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="battle" hidden>
+    <div class="b-foe">
+      <canvas id="bfSprite" width="96" height="96"></canvas>
+      <div>
+        <p class="meta" id="bfKind"></p>
+        <h2 id="bfName"></h2>
+        <p class="meta" id="bfLabel">Stärke</p>
+        <div class="pips" id="bfPips"></div>
+      </div>
+    </div>
+    <div class="b-me">
+      <span class="meta">Deine Energie</span>
+      <div class="pips hp" id="bmPips"></div>
+    </div>
+    <p id="bQ"></p>
+    <div id="bOpts"></div>
+    <p id="bMsg" aria-live="polite"></p>
+    <div id="bAct" class="row"></div>
+  </section>
+
+  <footer class="foot meta">Fragen basieren auf dem Glossar KI-Manager. Spielstand wird nur lokal in deinem Browser gespeichert.</footer>
+</main>
+
+<div id="title" class="overlay">
+  <div class="panel">
+    <p class="meta">Quizspiel · KI-Wissen</p>
+    <h2 class="big">KI-Fänger</h2>
+    <p>Erkunde die Welt, besiege Trainer, beantworte Fragen und fange alle 12 KI-Tools. Danach wartet die AGI.</p>
+    <div class="row">
+      <button id="btnContinue" class="primary">Weiterspielen</button>
+      <button id="btnNew">Neues Spiel</button>
+    </div>
+  </div>
+</div>
+
+<div id="modalDex" class="overlay" hidden>
+  <div class="panel wide">
+    <h2>KI-Dex</h2>
+    <div id="dexGrid" class="dexgrid"></div>
+    <div id="dexDetail" class="detail"></div>
+    <button data-close>Schließen</button>
+  </div>
+</div>
+
+<div id="modalShop" class="overlay" hidden>
+  <div class="panel">
+    <h2>Token-Händler</h2>
+    <p>Du hast <b id="shopTok"></b> Tokens.</p>
+    <div class="shoprow"><span>Prompt-Ball <small>fängt erschöpfte Tools · 10 Tokens</small></span><button data-buy="ball">Kaufen</button></div>
+    <div class="shoprow"><span>Energie-Riegel <small>+2 Energie im Kampf · 15 Tokens</small></span><button data-buy="bar">Kaufen</button></div>
+    <p class="meta" id="shopMsg"></p>
+    <button data-close>Schließen</button>
+  </div>
+</div>
+
+<div id="modalEnd" class="overlay" hidden>
+  <div class="panel">
+    <p class="meta">Geschafft</p>
+    <h2 class="big">KI-Meister</h2>
+    <p id="endText"></p>
+    <button id="btnEndClose" class="primary">Weiterspielen</button>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script src="maps.js"></script>
+<script src="audio.js"></script>
+<script src="sprites.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
