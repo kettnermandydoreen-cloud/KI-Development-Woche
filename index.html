@@ -121,15 +121,21 @@
 @media(max-width:650px){#mk-portfolio .value-front,#mk-portfolio .value-back{min-height:350px}#mk-portfolio .value-caption{left:24px;right:24px;bottom:24px}#mk-portfolio .value-back{padding:24px}}
 @media(prefers-reduced-motion:reduce){#mk-portfolio .value-inner,#mk-portfolio .value-front img{transition:none}#mk-portfolio .value-front:hover img{transform:none}}
 
-#mk-portfolio .cform{margin-top:40px;display:grid;gap:18px;max-width:560px}
+#mk-portfolio .cform{margin-top:40px;display:grid;gap:24px;max-width:560px}
 #mk-portfolio .cform h3{font-size:var(--subheading-size);margin:0}
-#mk-portfolio .cform label{display:grid;gap:6px;font:12px/1.6 Arial,sans-serif;letter-spacing:1.4px;text-transform:uppercase}
-#mk-portfolio .cform input[type=text],#mk-portfolio .cform input[type=email],#mk-portfolio .cform textarea{width:100%;min-height:48px;padding:12px 14px;border:1px solid #000;border-radius:0;background:var(--paper);color:var(--ink);font:16px Arial,sans-serif;letter-spacing:0;text-transform:none}
+#mk-portfolio .cform label{display:grid;gap:8px;font:12px/1.6 Arial,sans-serif;letter-spacing:1.6px;text-transform:uppercase}
+#mk-portfolio .cform input[type=text],#mk-portfolio .cform input[type=email],#mk-portfolio .cform textarea{width:100%;min-height:48px;padding:10px 0;border:0;border-bottom:1px solid #000;border-radius:0;background:transparent;color:inherit;font:400 17px/1.4 Arial,sans-serif;letter-spacing:0;text-transform:none;transition:box-shadow .2s}
 #mk-portfolio .cform textarea{min-height:140px;resize:vertical}
-#mk-portfolio .cform input:focus,#mk-portfolio .cform textarea:focus{outline:none;box-shadow:0 0 0 3px var(--lime),0 0 0 4px #000}
-#mk-portfolio .cform [aria-invalid=true]{border-width:2px;border-color:#B3261E}
-#mk-portfolio .cform .consent{display:flex;gap:12px;align-items:flex-start;text-transform:none;letter-spacing:0;font-size:14px;line-height:1.5}
-#mk-portfolio .cform .consent input{width:24px;height:24px;flex:none;margin:0;accent-color:var(--ink)}
+#mk-portfolio .cform input:hover,#mk-portfolio .cform textarea:hover{box-shadow:inset 0 -1px 0 #000}
+#mk-portfolio .cform input:focus,#mk-portfolio .cform textarea:focus{outline:none;box-shadow:inset 0 -3px 0 #000}
+#mk-portfolio .cform input:focus-visible,#mk-portfolio .cform textarea:focus-visible{outline:none;box-shadow:inset 0 -3px 0 #000,0 3px 0 var(--lime)}
+#mk-portfolio .cform [aria-invalid=true]{border-bottom:3px solid #B3261E}
+#mk-portfolio .cform .consent{display:flex;gap:12px;align-items:center;text-transform:none;letter-spacing:0;font-size:16px;line-height:1.5;min-height:44px;cursor:pointer}
+#mk-portfolio .cform .consent input{flex:none;display:grid;place-items:center;width:22px;height:22px;margin:0;border:1px solid #000;border-radius:0;background:transparent;cursor:pointer;-webkit-appearance:none;appearance:none}
+#mk-portfolio .cform .consent input::before{content:"";width:10px;height:6px;border-left:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:translateY(-1px) rotate(-45deg);opacity:0}
+#mk-portfolio .cform .consent input:checked{background:var(--lime)}
+#mk-portfolio .cform .consent input:checked::before{opacity:1}
+#mk-portfolio .cform .consent input:focus-visible{outline:3px solid var(--gray);outline-offset:4px}
 #mk-portfolio .cform .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 #mk-portfolio .cform button.button{border:0;cursor:pointer;justify-self:start;font-family:Arial,sans-serif}
 #mk-portfolio .cform button.button[disabled]{opacity:.5;pointer-events:none}
