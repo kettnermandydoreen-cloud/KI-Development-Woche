@@ -170,7 +170,7 @@ reduced.addEventListener('change',()=>{if(reduced.matches){hero.classList.remove
 
 (()=>{const root=document.getElementById('mk-portfolio');root.querySelectorAll('.value-flip').forEach(card=>{const front=card.querySelector('.value-front'),back=card.querySelector('.value-back'),close=card.querySelector('.value-close');function toggle(open){card.classList.toggle('is-open',open);front.setAttribute('aria-expanded',String(open));front.inert=open;back.inert=!open;back.setAttribute('aria-hidden',String(!open));(open?close:front).focus({preventScroll:true});}front.addEventListener('click',()=>toggle(true));close.addEventListener('click',()=>toggle(false));card.addEventListener('keydown',e=>{if(e.key==='Escape'&&card.classList.contains('is-open'))toggle(false);});});})();
 
-(()=>{const SUPABASE_URL='https://xnkasfvqxkzlnqqkwqwb.supabase.co',N8N_WEBHOOK_URL='https://mandystudio71.app.n8n.cloud/webhook-test/ProfilKontakt',SUPABASE_ANON_KEY='sb_publishable_7_q-MM5qTInv8-WS8b3_JQ_v3m3nhvW';
+(()=>{const SUPABASE_URL='https://xnkasfvqxkzlnqqkwqwb.supabase.co',N8N_WEBHOOK_URL='https://mandystudio71.app.n8n.cloud/webhook/ProfilKontakt',SUPABASE_ANON_KEY='sb_publishable_7_q-MM5qTInv8-WS8b3_JQ_v3m3nhvW';
 const f=document.getElementById('cform');if(!f)return;const st=f.querySelector('.status'),btn=f.querySelector('button');let last=0;
 const msg=(t,c)=>{st.textContent=t;st.className='status '+(c||'')};
 f.addEventListener('submit',async e=>{e.preventDefault();msg('');
